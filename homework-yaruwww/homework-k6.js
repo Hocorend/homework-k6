@@ -1,8 +1,8 @@
 import http from 'k6/http';
 import {check, group} from 'k6';
 
-const YA_RPS = __ENV.YA_RPS ? parseInt(__ENV.YA_RPS) : 60;
-const WWW_RPS = __ENV.WWW_RPS ? parseInt(__ENV.WWW_RPS)  : 120;
+const YA_INTENSITY = __ENV.YA_INTENSITY ? parseInt(__ENV.YA_INTENSITY) : 60;
+const WWW_INTENSITY = __ENV.WWW_INTENSITY ? parseInt(__ENV.WWW_INTENSITY)  : 120;
 
 export let options = {
     scenarios: {
@@ -13,10 +13,10 @@ export let options = {
             timeUnit: '1m',
             preAllocatedVUs: 50,
             stages: [
-                {target: YA_RPS, duration: '300s'},
-                {target: YA_RPS, duration: '600s'},
-                {target: YA_RPS * 1.2, duration: '300s'},
-                {target: YA_RPS * 1.2, duration: '600s'},
+                {target: YA_INTENSITY, duration: '300s'},
+                {target: YA_INTENSITY, duration: '600s'},
+                {target: YA_INTENSITY * 1.2, duration: '300s'},
+                {target: YA_INTENSITY * 1.2, duration: '600s'},
             ],
         },
         getWWW: {
@@ -26,10 +26,10 @@ export let options = {
             timeUnit: '1m',
             preAllocatedVUs: 50,
             stages: [
-                {target: WWW_RPS, duration: '300s'},
-                {target: WWW_RPS, duration: '600s'},
-                {target: WWW_RPS * 1.2, duration: '300s'},
-                {target: WWW_RPS * 1.2, duration: '600s'},
+                {target: WWW_INTENSITY, duration: '300s'},
+                {target: WWW_INTENSITY, duration: '600s'},
+                {target: WWW_INTENSITY * 1.2, duration: '300s'},
+                {target: WWW_INTENSITY * 1.2, duration: '600s'},
             ],
         }
     }
